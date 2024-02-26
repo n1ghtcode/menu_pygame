@@ -1,0 +1,47 @@
+import pygame, time
+import sys
+from buttons import *
+
+def main():
+    # Пример использования:
+    pygame.init()
+
+    width, height = 1280, 720
+    screen = pygame.display.set_mode((width, height))
+    pygame.display.set_caption("Image Button Example")
+
+    default_image_path = "image/button0.jpg"
+    clicked_image_path = "image/button1.jpg"
+    image_button = ImageButton(200, 100, default_image_path, clicked_image_path)
+    image_button1 = ImageButton(200, 220, default_image_path, clicked_image_path)
+    image_button2 = ImageButton(200, 340, default_image_path, clicked_image_path)
+
+    fon_image = pygame.image.load('image/FON.jpg')
+    fn_img_rect = fon_image.get_rect()
+
+    clock = pygame.time.Clock()
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            image_button.is_clicked(event)
+            image_button1.is_clicked(event)
+            image_button2.is_clicked(event)
+
+        screen.fill((255, 255, 255))
+        screen.blit(fon_image, fn_img_rect)
+        image_button.draw(screen)
+        image_button1.draw(screen)
+        image_button2.draw(screen)
+
+        pygame.display.flip()
+        clock.tick(30)
+
+
+
+if __name__ == '__main__':
+    print(1)
+    time.sleep(3)
+    main()
